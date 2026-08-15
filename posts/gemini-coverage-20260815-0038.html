@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마포 지역에서 살펴보는 강남 셔츠룸 검색과 시스템 정보 안내</title>
+  <style>
+ *, *::before, *::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ }
+
+ html {
+ font-size: 16px;
+ scroll-behavior: smooth;
+ }
+
+ body {
+ font-family: Impact, system-ui, sans-serif;
+ background-color: #000;
+ color: #fff;
+ line-height: 1.2;
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ gap: 120px; /* section-gap */
+ padding: 0;
+ }
+
+ /* full bleed */
+ body > * {
+ width: 100%;
+ max-width: none;
+ }
+
+ /* typography base */
+ h1, h2, h3, h4 {
+ font-weight: normal;
+ text-transform: uppercase;
+ letter-spacing: -0.02em;
+ }
+
+ h1 {
+ font-size: clamp(3.5rem, 12vw, 8rem);
+ line-height: 0.9;
+ color: #ff3b00;
+ text-shadow: 4px 4px 0 #000;
+ }
+
+ h2 {
+ font-size: clamp(2.5rem, 6vw, 4.5rem);
+ color: #fff;
+ border-left: 6px solid #ff3b00;
+ padding-left: 24px;
+ margin-bottom: 48px;
+ }
+
+ h3 {
+ font-size: 2rem;
+ }
+
+ a {
+ color: #ff3b00;
+ text-decoration: none;
+ border-bottom: 2px solid transparent;
+ }
+ a:hover {
+ border-bottom-color: #ff3b00;
+ }
+
+ .container {
+ padding: 72px;
+ width: 100%;
+ max-width: none;
+ }
+
+ /* header */
+ header {
+ background: #000;
+ border-bottom: 4px solid #ff3b00;
+ padding: 24px 72px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+ }
+
+ header .logo {
+ font-size: 2rem;
+ color: #fff;
+ letter-spacing: 4px;
+ border: 3px solid #ff3b00;
+ padding: 8px 16px;
+ transform: rotate(-3deg);
+ }
+
+ nav ul {
+ display: flex;
+ gap: 48px;
+ list-style: none;
+ }
+
+ nav ul li a {
+ font-size: 1.3rem;
+ padding: 8px 0;
+ border-bottom: 4px solid transparent;
+ transition: border-color 0.2s, color 0.2s;
+ }
+ nav ul li a:hover {
+ color: #ff3b00;
+ border-bottom-color: #ff3b00;
+ }
+
+ /* hamburger */
+ .hamburger {
+ display: none;
+ flex-direction: column;
+ gap: 6px;
+ cursor: pointer;
+ background: none;
+ border: none;
+ padding: 4px;
+ }
+ .hamburger span {
+ display: block;
+ width: 32px;
+ height: 4px;
+ background: #fff;
+ border-radius: 0;
+ }
+
+ @media (max-width:768px) {
+ header {
+ padding: 20px 24px;
+ }
+ nav ul {
+ display: none;
+ flex-direction: column;
+ background: #000;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ width: 100%;
+ padding: 24px;
+ gap: 16px;
+ border-top: 4px solid #ff3b00;
+ border-bottom: 4px solid #ff3b00;
+ }
+ nav.open ul {
+ display: flex;
+ }
+ .hamburger {
+ display: flex;
+ }
+ .container {
+ padding: 36px 24px;
+ }
+ h1 {
+ font-size: 3rem;
+ }
+ h2 {
+ font-size: 2rem;
+ }
+ }
+
+ /* hero */
+ .hero {
+ background: #000;
+ padding: 120px 72px 72px;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 48px;
+ align-items: center;
+ justify-content: space-between;
+ border-bottom: 4px solid #ff3b00;
+ position: relative;
+ }
+ .hero::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,59,0,0.05) 20px, rgba(255,59,0,0.05) 40px);
+ pointer-events: none;
+ }
+ .hero-text {
+ max-width: 700px;
+ z-index: 1;
+ }
+ .hero-text p {
+ font-size: 1.6rem;
+ margin-top: 24px;
+ line-height: 1.4;
+ color: #ccc;
+ }
+ .hero-cta {
+ border: 4px solid #ff3b00;
+ padding: 24px 48px;
+ background: #ff3b00;
+ color: #000;
+ font-size: 2rem;
+ font-family: inherit;
+ transform: rotate(-2deg);
+ display: inline-block;
+ margin-top: 32px;
+ transition: 0.15s;
+ }
+ .hero-cta:hover {
+ background: #000;
+ color: #ff3b00;
+ transform: rotate(0deg);
+ }
+ .hero-visual {
+ width: 300px;
+ height: 300px;
+ border: 4px solid #ff3b00;
+ background: #1a1a1a;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 6rem;
+ transform: rotate(5deg);
+ position: relative;
+ overflow: hidden;
+ }
+ .hero-visual::after {
+ content: '🔥';
+ font-size: 8rem;
+ filter: drop-shadow(0 0 12px #ff3b00);
+ }
+
+ @media (max-width:768px) {
+ .hero {
+ padding: 80px 24px 48px;
+ flex-direction: column;
+ }
+ .hero-text p {
+ font-size: 1.2rem;
+ }
+ .hero-visual {
+ width: 200px;
+ height: 200px;
+ font-size: 4rem;
+ }
+ }
+
+ /* sections general */
+ section {
+ padding: 0 72px;
+ }
+ @media (max-width:768px) {
+ section {
+ padding: 0 24px;
+ }
+ }
+
+ /* reviews */
+ .reviews-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 48px;
+ }
+ .review-card {
+ background: #111;
+ border: 4px solid #ff3b00;
+ padding: 32px 24px;
+ display: flex;
+ flex-direction: column;
+ gap: 16px;
+ transform: rotate(-1deg);
+ box-shadow: 8px 8px 0 #ff3b00;
+ }
+ .review-card:nth-child(2n) {
+ transform: rotate(1deg);
+ box-shadow: -8px 8px 0 #ff3b00;
+ }
+ .review-card .stars {
+ color: #ff3b00;
+ font-size: 1.6rem;
+ letter-spacing: 4px;
+ }
+ .review-card .meta {
+ display: flex;
+ justify-content: space-between;
+ font-size: 0.9rem;
+ color: #888;
+ border-bottom: 2px solid #333;
+ padding-bottom: 8px;
+ }
+ .review-card blockquote {
+ font-size: 1.1rem;
+ line-height: 1.5;
+ margin: 8px 0;
+ color: #ddd;
+ font-style: italic;
+ }
+ .review-card .author {
+ font-weight: bold;
+ color: #ff3b00;
+ }
+
+ /* cta strip */
+ .cta-strip {
+ background: #ff3b00;
+ padding: 48px 72px;
+ text-align: center;
+ border-top: 4px solid #fff;
+ border-bottom: 4px solid #fff;
+ }
+ .cta-strip a {
+ color: #000;
+ font-size: 3rem;
+ border-bottom: 6px solid #000;
+ transition: 0.2s;
+ }
+ .cta-strip a:hover {
+ border-bottom-color: #fff;
+ color: #fff;
+ }
+
+ @media (max-width:768px) {
+ .cta-strip a {
+ font-size: 2rem;
+ }
+ }
+
+ /* footer */
+ footer {
+ background: #000;
+ border-top: 4px solid #ff3b00;
+ padding: 48px 72px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 24px;
+ font-size: 0.9rem;
+ }
+ footer .copy {
+ color: #666;
+ }
+ footer .phone {
+ font-size: 1.6rem;
+ color: #ff3b00;
+ border: 3px solid #ff3b00;
+ padding: 8px 24px;
+ transform: rotate(-2deg);
+ }
+ footer .phone:hover {
+ background: #ff3b00;
+ color: #000;
+ transform: rotate(0deg);
+ }
+
+ @media (max-width:768px) {
+ footer {
+ flex-direction: column;
+ text-align: center;
+ padding: 36px 24px;
+ }
+ }
+
+ /* raw textures (brutalist touches) */
+ .noise-bg {
+ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+ background-repeat: repeat;
+ background-size: 200px 200px;
+ }
+
+ .rotated-strip {
+ background: #ff3b00;
+ transform: rotate(-0.5deg);
+ margin: 0 -24px;
+ padding: 16px 72px;
+ text-align: center;
+ font-size: 1.6rem;
+ color: #000;
+ border-top: 4px solid #fff;
+ border-bottom: 4px solid #fff;
+ }
+
+ /* misc */
+ .info-list {
+ list-style: none;
+ display: flex;
+ flex-direction: column;
+ gap: 16px;
+ font-size: 1.2rem;
+ border-left: 4px solid #ff3b00;
+ padding-left: 24px;
+ }
+ .info-list li {
+ display: flex;
+ gap: 8px;
+ }
+ .info-list li::before {
+ content: '▸';
+ color: #ff3b00;
+ }
+
+ .section-gap {
+ height: 120px;
+ }
+ </style>
+  <link rel="canonical" href="https://sf-t3-1779642675702-168.maphoshirts.today/posts/gemini-coverage-20260815-0038.html">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:url" content="https://sf-t3-1779642675702-168.maphoshirts.today/posts/gemini-coverage-20260815-0038.html">
+  <meta property="og:title" content="마포 지역에서 살펴보는 강남 셔츠룸 검색과 시스템 정보 안내">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <div class="logo">셔츠룸</div>
+ <nav id="nav">
+ <div class="hamburger" id="hamburger" aria-label="메뉴 열기">
+ 
+ </div>
+ <ul>
+ <li><a href="#">홈</a></li>
+ <li><a href="#">리뷰</a></li>
+ <li><a href="#">가격</a></li>
+ <li><a href="#">예약</a></li>
+ <li><a href="#">문의</a></li>
+ </ul>
+ </nav>
+ </header>
+    <main>
+<h1>마포 지역에서 살펴보는 강남 셔츠룸 검색과 시스템 정보 안내</h1>
+<p>최근 마포 지역의 온라인 커뮤니티와 정보망을 중심으로 다양한 여가 문화에 대한 검색량이 늘어나고 있습니다. 특히 많은 사용자가 궁금해하는 강남 셔츠룸 관련 정보는 시스템의 구조와 운영 방식을 미리 파악하는 것이 중요합니다. 무분별한 소문 대신 신뢰할 수 있는 가이드를 참고하여 예산을 세우고 이용 규칙을 확인하는 절차가 필요합니다. 이러한 정보 탐색 시 마포 내의 다양한 데이터망을 활용하면 빠르고 정확하게 검색을 진행할 수 있습니다.</p>
+<p>대다수 소비자가 특정 서비스를 계획할 때 먼저 고려하는 요인은 바로 투명한 정보의 제공 여부입니다. 강남 셔츠룸과 같은 테마형 업종의 경우 운영 기준이나 세부적인 방식에서 차이가 발생할 수 있으므로, 방문 전 사전 비교가 필수적입니다. 불필요한 마찰을 피하고 합리적인 지출을 지향하기 위해서는 업계 전반의 흐름을 분석해 둔 플랫폼을 확인하는 것이 권장됩니다. 소비자가 직접 겪을 수 있는 혼란을 예방하기 위해 설계된 여러 안내서를 참고하는 것도 좋습니다.</p>
+<p>인터넷에 분산되어 있는 정보들은 신뢰성을 확인하기 어렵기 때문에 통합적인 비교가 가능한 곳을 먼저 살펴보는 것이 현명합니다. 강남 셔츠룸 정보를 알아보는 소비자가 의사결정을 내리기 전에 예산 규모와 전반적인 시스템을 가늠해 볼 수 있도록 돕는 <a class="anchor-link" href="https://cityjot.shop/" data-bpaas-link-target="t2-cityjot">서울 정보 블로그 정보</a> 에서 세부 요소를 미리 검토하는 것이 유리합니다. 이를 통해 각 선택지가 가진 특징을 객관적으로 비교하고 예기치 못한 추가 지출을 방지할 수 있습니다.</p>
+<p>지속적인 서버 웜업을 통해 마포의 통신 환경은 향상되고 있으며, 이는 정교한 데이터 수집을 가능하게 만듭니다. 더 많은 지역 기반의 안내와 상세한 생활 환경 정보를 얻고 싶다면 <a href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EC%A0%95%EB%B3%B4%20%EB%B8%94%EB%A1%9C%EA%B7%B8">서울 정보 블로그</a> 서비스를 통하여 위치 정보와 함께 유용한 지식을 확인해 볼 수 있습니다. 올바른 정보 소비 습관을 기르고 안전한 이용을 도모하기 위해서는 언제나 객관적인 자료만을 바탕으로 신중하게 판단해야 합니다.</p>
+        <nav class="post-pager" aria-label="글 이동">
+      <a class="post-pager__prev" href="../posts/gemini-coverage-20260815-0037.html">← 마포 비즈니스 미팅을 위한 접대 장소 선택 기준</a>
+      <a class="post-pager__index" href="../posts.html">글 목록</a>
+      <a class="post-pager__next" href="../posts/gemini-coverage-20260815-0039.html">강남 셔츠룸 선택 시 고려해야 할 중요한 요소와 현명한 접근법 →</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
